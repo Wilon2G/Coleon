@@ -1,0 +1,17 @@
+# Archivos de Python
+*.pyc
+*.pyo
+__pycache__/
+
+# Configuración de entorno
+.env
+*.sqlite3
+
+# Archivos de Django
+/db.sqlite3
+/media/
+staticfiles/
+
+# Archivos de dependencia
+venv/
+*.log
