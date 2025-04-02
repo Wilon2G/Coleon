@@ -6,31 +6,31 @@ Además, Coleon genera gráficos automáticamente para visualizar el progreso de
 
 ## Funcionalidades principales:
 
-Generación de gráficos automáticos: Si la colección tiene columnas predeterminadas como “precio” o “estado”, se generarán gráficos como:
+- Generación de gráficos automáticos: Si la colección tiene columnas predeterminadas como “precio” o “estado”, se generarán gráficos como:
 
-- "Productos más caros"
-- "Histórico de compras"
-- "Progreso de la colección"
+  - "Productos más caros"
+  - "Histórico de compras"
+  - "Progreso de la colección"
 
-Creación de columnas personalizadas: Los usuarios pueden añadir columnas con distintos tipos de datos:
-- Texto (string)
-- Número (number)
-- Fecha (date)
-- Estado (boolean o enum)
+- Creación de columnas personalizadas: Los usuarios pueden añadir columnas con distintos tipos de datos:
+  - Texto (string)
+  - Número (number)
+  - Fecha (date)
+  - Estado (boolean o enum)
 
-Vista en tarjetas y tabla: El usuario puede alternar entre una vista en tabla o en tarjetas, ideal para colecciones visuales.
+- Vista en tarjetas y tabla: El usuario puede alternar entre una vista en tabla o en tarjetas, ideal para colecciones visuales.
 
-Exportación de colecciones: Se podrá exportar en formato CSV para facilitar el intercambio y respaldo de datos.
+- Exportación de colecciones: Se podrá exportar en formato CSV para facilitar el intercambio y respaldo de datos.
 
-Filtros avanzados: Permite filtrar la colección por cualquier columna.
+- Filtros avanzados: Permite filtrar la colección por cualquier columna.
 
-Gestión de usuarios y seguridad: Registro, inicio de sesión con contraseña y acceso seguro a colecciones personales.
+- Gestión de usuarios y seguridad: Registro, inicio de sesión con contraseña y acceso seguro a colecciones personales.
 
-Añadir y eliminar artículos: Administración sencilla con paginación para colecciones grandes.
+- Añadir y eliminar artículos: Administración sencilla con paginación para colecciones grandes.
 
-Verificación de enlaces de imágenes: Evita imágenes rotas al validar URLs.
+- Verificación de enlaces de imágenes: Evita imágenes rotas al validar URLs.
 
-Notificaciones antes de eliminar datos sensibles: Alertas antes de eliminar artículos o columnas con muchos datos.
+- Notificaciones antes de eliminar datos sensibles: Alertas antes de eliminar artículos o columnas con muchos datos.
 
 
 ## Tecnologías utilizadas:
