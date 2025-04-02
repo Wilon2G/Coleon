@@ -1,5 +1,5 @@
 # Coleon
-Descripción:
+#### Descripción:
 Coleon es una aplicación diseñada para coleccionistas que buscan organizar y planificar sus colecciones de manera eficiente. Permite a los usuarios crear, personalizar y seguir el progreso de sus colecciones, ya sean de sellos, discos, cartas u otros artículos de interés.
 La aplicación ofrece una interfaz basada en tablas personalizables, donde cada artículo ocupa una fila y el usuario puede agregar columnas personalizadas para registrar la información que necesite, como precio, fecha de adquisición, origen, tienda, imágenes y más.  
 Además, Coleon genera gráficos automáticamente para visualizar el progreso de la colección, el dinero gastado, la evolución de precios y otros análisis relevantes. También permite compartir esquemas de colección con otros usuarios y exportar datos en distintos formatos. 
