@@ -1,40 +1,41 @@
 # Coleon
-#### Descripción:
-Coleon es una aplicación diseñada para coleccionistas que buscan organizar y planificar sus colecciones de manera eficiente. Permite a los usuarios crear, personalizar y seguir el progreso de sus colecciones, ya sean de sellos, discos, cartas u otros artículos de interés.
-La aplicación ofrece una interfaz basada en tablas personalizables, donde cada artículo ocupa una fila y el usuario puede agregar columnas personalizadas para registrar la información que necesite, como precio, fecha de adquisición, origen, tienda, imágenes y más.  
-Además, Coleon genera gráficos automáticamente para visualizar el progreso de la colección, el dinero gastado, la evolución de precios y otros análisis relevantes. También permite compartir esquemas de colección con otros usuarios y exportar datos en distintos formatos. 
 
-## Funcionalidades principales:
+#### Description:
+Coleon is an application designed for collectors who want to efficiently organize and plan their collections. It allows users to create, customize, and track the progress of their collections, whether they are stamps, records, trading cards, or other valuable items.
 
-- Generación de gráficos automáticos: Si la colección tiene columnas predeterminadas como “precio” o “estado”, se generarán gráficos como:
+The app features a customizable table-based interface where each item is represented as a row. Users can add custom columns to record any necessary information, such as price, acquisition date, origin, store, images, and more.  
 
-  - "Productos más caros"
-  - "Histórico de compras"
-  - "Progreso de la colección"
+Additionally, Coleon automatically generates charts to visualize collection progress, money spent, price trends, and other relevant analytics. Users can also share collection templates with others and export data in multiple formats.
 
-- Creación de columnas personalizadas: Los usuarios pueden añadir columnas con distintos tipos de datos:
-  - Texto (string)
-  - Número (number)
-  - Fecha (date)
-  - Estado (boolean o enum)
+## Key Features:
 
-- Vista en tarjetas y tabla: El usuario puede alternar entre una vista en tabla o en tarjetas, ideal para colecciones visuales.
+- **Automatic Chart Generation:** If the collection includes predefined columns like "price" or "status," Coleon generates insightful charts, such as:
+  - "Most Expensive Items"
+  - "Purchase History"
+  - "Collection Progress"
 
-- Exportación de colecciones: Se podrá exportar en formato CSV para facilitar el intercambio y respaldo de datos.
+- **Custom Column Creation:** Users can add columns with different data types:
+  - Text (string)
+  - Number (number)
+  - Date (date)
+  - Status (boolean or enum)
 
-- Filtros avanzados: Permite filtrar la colección por cualquier columna.
+- **Card and Table Views:** Users can switch between a table view and a card view, ideal for visually appealing collections.
 
-- Gestión de usuarios y seguridad: Registro, inicio de sesión con contraseña y acceso seguro a colecciones personales.
+- **Collection Export:** Collections can be exported in CSV format for easy sharing and data backup.
 
-- Añadir y eliminar artículos: Administración sencilla con paginación para colecciones grandes.
+- **Advanced Filtering:** Users can filter the collection based on any column.
 
-- Verificación de enlaces de imágenes: Evita imágenes rotas al validar URLs.
+- **User Management and Security:** Secure user registration and login with password protection for personal collections.
 
-- Notificaciones antes de eliminar datos sensibles: Alertas antes de eliminar artículos o columnas con muchos datos.
+- **Item Management:** Easy addition and removal of items with pagination support for large collections.
 
+- **Image Link Verification:** Ensures images are not broken by validating URLs.
 
-## Tecnologías utilizadas:
+- **Sensitive Data Deletion Alerts:** Notifications appear before deleting items or columns containing significant data.
 
-- Backend: Python con Django
-- Base de datos: SQL con almacenamiento JSON (para columnas personalizadas)
-- Frontend: HTML y CSS
+## Technologies Used:
+
+- **Backend:** Python with Django
+- **Database:** SQL with JSON storage (for custom columns)
+- **Frontend:** HTML and CSS
