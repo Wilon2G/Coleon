@@ -39,3 +39,6 @@ Additionally, Coleon automatically generates charts to visualize collection prog
 - **Backend:** Python with Django
 - **Database:** SQL with JSON storage (for custom columns)
 - **Frontend:** HTML and CSS
+
+
+Initiate the server --> $ python3 manage.py runserver
