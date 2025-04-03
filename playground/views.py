@@ -9,4 +9,5 @@ from django.shortcuts import render
 def say_hello(request):
     return render(request, 'hello.html',{"name":"liquen"})
 
-
+def kk(request):
+    return render(request, 'kk.html')
