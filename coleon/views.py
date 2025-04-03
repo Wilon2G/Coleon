@@ -1,12 +1,17 @@
 from django.shortcuts import render
 #from django.http import HttpResponse
+from django.shortcuts import render
 # Create your views here.
 
 # Views are not really what a regular developer would think
 # In python they act more like request handelers
 # What we would call a view in react in python is called a template
 
-def say_hello(request):
-    return render(request, 'hello.html',{"name":"liquen"})
+def homepage(request):
+    #return HttpResponse("Hello World")
+    return render(request,'home.html')
 
 
+def about(request):
+    #return HttpResponse("about")
+    return render(request,'about.html')
