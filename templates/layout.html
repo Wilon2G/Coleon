@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block title %}
+            Coleon
+        {% endblock %}
+    </title>
+    <script src="{% static 'js/main.js' %}" defer></script>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+        <a href="/">Register</a>
+        <a href="/playground/kk">KK</a>
+        <a href="/playground/hello">Hello</a>
+        <a href="{% url 'users:register' %}">Register</a>
+    </nav>
+    <main>
+        {% block content %}
+
+        {% endblock %}
+    </main>
+    
+</body>
+</html>
