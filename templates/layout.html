@@ -19,7 +19,19 @@
         <a href="/">Register</a>
         <a href="/playground/kk">KK</a>
         <a href="/playground/hello">Hello</a>
-        <a href="{% url 'users:register' %}">Register</a>
+
+        {% if user.is_authenticated %}
+            <form class="logout" action="{% url 'users:logout' %}" method="post">
+              {% csrf_token %}
+                <button class="logout-button" >
+                    Log Out
+                </button>
+            </form>
+        {% else %}
+            <a href="{% url 'users:register' %}">Register</a>
+            <a href="{% url 'users:login' %}">Log In</a>
+        {% endif %}
+
     </nav>
     <main>
         {% block content %}
