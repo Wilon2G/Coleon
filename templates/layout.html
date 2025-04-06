@@ -11,15 +11,12 @@
     </title>
     <script src="{% static 'js/main.js' %}" defer></script>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <nav>
         <a href="/">Home</a>
         <a href="/about">About</a>
-        <a href="/">Register</a>
-        <a href="/playground/kk">KK</a>
-        <a href="/playground/hello">Hello</a>
-
         {% if user.is_authenticated %}
             <form class="logout" action="{% url 'users:logout' %}" method="post">
               {% csrf_token %}
