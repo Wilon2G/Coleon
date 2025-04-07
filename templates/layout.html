@@ -14,20 +14,38 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <nav>
-        <a href="/">Home</a>
-        <a href="/about">About</a>
-        {% if user.is_authenticated %}
+    <nav class="main_nav">
+        <div class="logo_container" >
+            <a href="/">
+                <img title="Home" src="{% static 'img/Coleon_logo.png' %}" alt="Coleon Logo" class="main_logo" />
+            </a>
+
+        </div>
+        <div class="log_container">
+            {% if user.is_authenticated %}
+            <a href="/">
+                My collections
+            </a>
             <form class="logout" action="{% url 'users:logout' %}" method="post">
               {% csrf_token %}
                 <button class="logout-button" >
-                    Log Out
+                    <img title="Log Out" src="{% static 'img/icons/logout.png' %}" alt="Log Out" />
                 </button>
             </form>
         {% else %}
-            <a href="{% url 'users:register' %}">Register</a>
-            <a href="{% url 'users:login' %}">Log In</a>
+        <div class="register_container">
+            <a href="{% url 'users:register' %}">                    
+                <img title="Register" src="{% static 'img/icons/register.png' %}" alt="Register" class="register_icon" />
+            </a>
+        </div>
+        <div class="login_container">
+            <a href="{% url 'users:login' %}">                    
+                <img title="Log In" src="{% static 'img/icons/login.png' %}" alt="Log In" class="login_icon" />
+            </a>
+        </div>
         {% endif %}
+        </div>
+
 
     </nav>
     <main>
