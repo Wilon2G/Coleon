@@ -1,6 +1,11 @@
-/* Styling the main container to center the form and add some spacing */
+/* Here the styles of basically the whole register page
+* This style page will only be loaded for this page and will overwrite the styles of the layout
+* It will also overwrite some of the styles of the form (the crispy forms one)
+*/
+
+/*Bit of top margin*/
 .container {
-    margin-top: 5rem;
+    margin-top: 2rem;
 }
 
 /* Title Styling */
@@ -9,6 +14,15 @@ h1 {
     margin-bottom: 2rem;
     font-size: 2.5rem;
     font-weight: bold;
+}
+
+p{
+    text-align: center;
+}
+
+/* I dont wanna see this >:(  its redundant*/
+#id_password2_helptext{
+    display: none;
 }
 
 /* Styling the form itself */
@@ -42,7 +56,7 @@ h1 {
 /* Focus style for the input fields */
 .register-form .form-control:focus {
     border-color: #6c757d; /* Light grey color on focus */
-    box-shadow: 0 0 0 0.25rem rgba(108, 117, 125, 0.25); /* Subtle shadow effect */
+    box-shadow: 0 0 0 0.25rem rgba(108, 117, 125, 0.25); /* Subtle shadow effect maybe change later, make it less subtle*/
 }
 
 /* Styling the help text */
@@ -51,9 +65,9 @@ h1 {
     color: #ccc;
 }
 
-/* Styling the submit button */
+/* Styling the submit button, maybe change color later */
 .register-form button {
-    width: 100%;
+    width: 70%;
     padding: 0.75rem;
     background-color: #007bff;
     color: #fff;
@@ -61,6 +75,9 @@ h1 {
     border-radius: 4px;
     font-size: 1.1rem;
     cursor: pointer;
+    margin-top: 1rem;
+    margin-left: 50%;
+    transform: translateX(-50%);
 }
 
 /* Submit button hover effect */

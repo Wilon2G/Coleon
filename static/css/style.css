@@ -20,7 +20,7 @@
 .nav-link img,
 button img {
     filter: brightness(0) invert(1);
-    height: 36px; /* Adjust icon sizes */
+    height: 3rem; /* Adjust icon sizes */
     width: auto;
 }
 
@@ -37,7 +37,7 @@ button img {
 }
 
 main {
-    padding-top: 2rem;
+    margin-top: 1rem;
 }
 
 button.btn-link {
