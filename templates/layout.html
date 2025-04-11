@@ -24,7 +24,7 @@
         <div class="log_container">
             {% if user.is_authenticated %}
             <div class="collections_container">
-                <a href="/">
+                <a href="{% url 'collections:my_collections' %}">
                     <img title="Collections" src="{% static 'img/icons/collection_icon.png' %}" alt="Collections" class="collections_icon" />
                 </a>
             </div>

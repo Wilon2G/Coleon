@@ -23,4 +23,6 @@ urlpatterns = [
     path('',views.homepage),
     path('playground/',include('playground.urls')),
     path('users/',include('users.urls')),
+    path('collections/',include('coleoncore.urls')),
+
 ]
