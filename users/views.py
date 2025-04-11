@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, logout
-# Create your views here.
+from django.contrib.auth.decorators import login_required, logout_required #Interesting wraper made by me, it ensures a logged user does not access a place it should not
 
+# Create your views here.
+@logout_required(login_url="/")
 def register_view(request):
     if request.method == "POST":
         form = UserCreationForm(request.POST)
@@ -13,6 +15,7 @@ def register_view(request):
         form = UserCreationForm()
     return render(request, "users/register.html", {"form":form})
 
+@logout_required(login_url="/")
 def login_view(request):
     if request.method == "POST":
         form = AuthenticationForm(data=request.POST)
@@ -29,8 +32,8 @@ def login_view(request):
     
     return render(request, "users/login.html", {"form":form})
 
+@login_required(login_url="/users/login/")
 def logout_view(request):
-    
     if request.method == "POST":
         logout(request)
         return redirect("/")
