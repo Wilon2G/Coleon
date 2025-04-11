@@ -1,0 +1,79 @@
+/* Styling the main container to center the form and add some spacing */
+.container {
+    margin-top: 5rem;
+}
+
+/* Title Styling */
+h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+/* Styling the form itself */
+.register-form {
+    background-color: #1f1f1f;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Form group styling */
+.register-form .mb-3 {
+    margin-bottom: 1.5rem;
+}
+
+/* Label Styling */
+.register-form label {
+    color: #f8f9fa;
+    font-weight: bold;
+}
+
+/* Input fields */
+.register-form .form-control {
+    background-color: #333;
+    color: #f8f9fa;
+    border: 1px solid #444;
+    border-radius: 4px;
+    padding: 0.75rem;
+}
+
+/* Focus style for the input fields */
+.register-form .form-control:focus {
+    border-color: #6c757d; /* Light grey color on focus */
+    box-shadow: 0 0 0 0.25rem rgba(108, 117, 125, 0.25); /* Subtle shadow effect */
+}
+
+/* Styling the help text */
+.register-form .form-text {
+    font-size: 0.875rem;
+    color: #ccc;
+}
+
+/* Styling the submit button */
+.register-form button {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+
+/* Submit button hover effect */
+.register-form button:hover {
+    background-color: #0056b3;
+}
+
+/* Ensure that the form text (help text) is spaced out correctly */
+.register-form .form-text ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.register-form .form-text li {
+    line-height: 1.5;
+}
