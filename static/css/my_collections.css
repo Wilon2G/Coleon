@@ -1,0 +1,12 @@
+a{
+    text-decoration: none;
+}
+
+
+.list-group-item{
+    margin-bottom: 1rem;
+}
+
+.list-group-item:hover{
+    background-color: #616569bf;
+}
