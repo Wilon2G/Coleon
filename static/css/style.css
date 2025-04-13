@@ -3,6 +3,7 @@
 :root {
     --bs-body-bg: #121212;
     --bs-body-color: #f8f9fa;
+    --bs-secondary-color: #75797dbf;
 }
 
 .navbar {
@@ -20,7 +21,7 @@
 .nav-link img,
 button img {
     filter: brightness(0) invert(1);
-    height: 3rem; /* Adjust icon sizes */
+    height: 4rem; /* Adjust icon sizes */
     width: auto;
 }
 
