@@ -4,35 +4,29 @@ from coleoncore.models import Coleoncore, Article, Name, Image, Status  # Collec
 from django.shortcuts import get_object_or_404
 from django.views.decorators.http import require_POST
 from django.apps import apps
+from .utils import CollectionHandler  #CollectionHandler is the class that represents and manages the collections (a lot)
 
 
 
-
-
-
+#Shows the collections of a user, also creates new collections
 @login_required(login_url="/users/login/")
 def my_collections(request):
     user = request.user
-
     if request.method == "POST":
         title = request.POST.get("title")
         if title:
-
-            collection=Coleoncore.objects.create(user=user, title=title)
-            article = Article.objects.create(coleoncore=collection)
-            # 3. Add default values
-            Name.objects.create(article_id=article)
-            Image.objects.create(article_id=article)
-            Status.objects.create(article_id=article)
-
+            # This calls the CollectionHandler class to create a new collection
+            CollectionHandler.create_collection(user=user, title=title)
             return redirect("/collections/my_collections/")  
 
-    collections = Coleoncore.objects.filter(user=user).order_by("-created_at")
+    collections = Coleoncore.objects.filter(user=user).order_by("-created_at") #Gets the collections of the user and orders by creation date
 
     return render(request, 'my_collections.html', {
         "collections": collections,
         "name": user.first_name or user.username, 
     })
+
+
 
 
 @require_POST

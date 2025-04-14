@@ -8,6 +8,8 @@ class Coleoncore(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='collections') #Related name is to later be able to call user.collections and get all of them (explained later)
     title = models.CharField(max_length=50)  # Name of the collection
     description = models.TextField(blank=True) # Description, mostrly for when the collection is shared
+    public = models.BooleanField(default=False)# Defines if the collection is public(true) or private(false)
+    columns = models.CharField(default="image:name:status:price") #Defines what columns the colection is using with a specific string, this way a reverse search is not necesary
     created_at = models.DateTimeField(auto_now_add=True) #Date of creation
     last_modified = models.DateTimeField(auto_now=True) # for putting on the top of the list the last modified collection
 
