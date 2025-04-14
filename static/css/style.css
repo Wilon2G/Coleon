@@ -1,69 +1,46 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* style.css */
+
+:root {
+    --bs-body-bg: #121212;
+    --bs-body-color: #f8f9fa;
+    --bs-secondary-color: #75797dbf;
 }
 
-body {
-    display: flex;
-    flex-direction: column;
-    font-size: 1.5rem;
-    background-color: rgb(29 31 38);
-    color: whitesmoke;
-    font-family: 'Inter', sans-serif;
+.navbar {
+    background-color: #1f1f1f;
+    padding: 1.5rem 2rem; /* Increase navbar height by adding padding */
 }
 
-
-h1,p{
-    text-align: center;
+.navbar-brand img {
+    filter: brightness(0) invert(1); /* Makes light logos fit dark mode */
+    height: 60px; /* Increase the size of the Coleon logo */
+    width: auto; /* Maintain aspect ratio */
 }
 
-/**=============Main content area=============**/
+/* Make navbar links/icons larger and more spaced */
+.nav-link img,
+button img {
+    filter: brightness(0) invert(1);
+    height: 4rem; /* Adjust icon sizes */
+    width: auto;
+}
 
+.nav-link,
+.btn-link {
+    color: #f8f9fa;
+    font-size: 1.2rem; /* Increase the font size for better readability */
+    margin-right: 1.5rem; /* Add some spacing between icons */
+}
+
+.nav-link:hover,
+.btn-link:hover {
+    opacity: 0.8;
+}
 
 main {
-    flex-grow: 1;
-    display: grid;
-    place-items: center;
-    padding: 2rem;
+    margin-top: 1rem;
 }
 
-
-/**=============Navigation styles=============**/
-.main_nav {
-    background-color: #111;
-    display: flex;
-    justify-content: space-between;
-    height: 10rem;
-}
-
-.main_logo{
-    height: 100%;
-}
-
-.log_container{
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    width: 25rem;
-}
-
-.register_container, .login_container, .logout, .collections_container{
-    height: 50%;
-}
-
-.register_icon, .login_icon, .logout_icon, .logout-button, .collections_icon{
-    height: 100%;
-}
-
-.logout-button {
-    background: transparent;
-    border: none;
+button.btn-link {
     padding: 0;
-    cursor: pointer;
-  }
-
-
-/**=============Form buttons=============**/
-
-
+}
