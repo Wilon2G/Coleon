@@ -31,12 +31,13 @@ class Article(models.Model):
 
 #DEFAULT COLUMNS this are default models that represent the default columns that the app provides for the user
 #Each table stores a specific column for a specific article in a specific collection
+#Each article can only have 
 
 #==NAME============
 #selfex
 class Name(models.Model):
-    article_id = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='names') #The realted_name is so that later we an do article.names
-    value = models.CharField(max_length=100,blank=True)                                                #For now i don't think i' gonna support having many default columns so this could be named "name" but i'll leave it for future Guille to decide
+    article_id = models.OneToOneField(Article, on_delete=models.CASCADE, related_name='name') #The realted_name is so that later we an do article.names
+    value = models.CharField(max_length=100,blank=True)                                       #For now i don't think i' gonna support having many default columns so this could be named "name" but i'll leave it for future Guille to decide
 
 #==PRICE================
 #Price can have a speific currency or not from the available currencys
@@ -48,7 +49,7 @@ class Price(models.Model):
         GBP = 'GBP','Pound'
         AUD = 'AUD','Australian Dollar'
         CAD = 'CAD','Canadian Dollar'
-    article_id = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='prices')
+    article_id = models.OneToOneField(Article, on_delete=models.CASCADE, related_name='price')
     value = models.DecimalField(max_digits=10, decimal_places=2,blank=True,null=True)
     currency = models.CharField(
         max_length=5, 
@@ -64,7 +65,7 @@ class Status(models.Model):
         MISSING = 'missing', 'Missing'
         ON_DELIVERY = 'on_delivery', 'On Delivery'
         OBTAINED = 'obtained', 'Obtained'
-    article_id = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='status')
+    article_id = models.OneToOneField(Article, on_delete=models.CASCADE, related_name='status')
     value = models.CharField(
         max_length=20, 
         choices=Available_status.choices,
@@ -73,39 +74,39 @@ class Status(models.Model):
 
 #==DESCRIPTION==================
 class Description(models.Model):
-    article_id = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='descriptions') 
+    article_id = models.OneToOneField(Article, on_delete=models.CASCADE, related_name='description') 
     value = models.TextField(max_length=100, blank=True)  
 
 
 #==STORE============
 #selfex
 class Store(models.Model):
-    article_id = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='stores') 
+    article_id = models.OneToOneField(Article, on_delete=models.CASCADE, related_name='store') 
     value = models.CharField(max_length=100,blank=True)     
 
 #===DATE OF PURCHASE=========
 # Date of purchase, can act as arrival date if the latter is not chosen
 class Purchase_date(models.Model):
-    article_id = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='purchase_dates') 
+    article_id = models.OneToOneField(Article, on_delete=models.CASCADE, related_name='purchase_date') 
     value = models.DateField(blank=True,null=True)
 
 #===DATE OF ARRIVAL========
 # Date of arrival, can be chosen only if purchase date is chosen (maybe ?)
 class Arrival_date(models.Model):
-    article_id = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='arrival_dates') 
+    article_id = models.OneToOneField(Article, on_delete=models.CASCADE, related_name='arrival_date') 
     value = models.DateField(blank=True,null=True)
 
 
 class Image(models.Model):
-    article_id = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='images') 
+    article_id = models.OneToOneField(Article, on_delete=models.CASCADE, related_name='image') 
     value = models.URLField(blank=True,null=True) 
 
 class Set(models.Model):
-    article_id = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='sets') 
+    article_id = models.OneToOneField(Article, on_delete=models.CASCADE, related_name='set') 
     value = models.CharField(max_length=100,blank=True) 
 
 class Amount(models.Model):
-    article_id = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='amounts') 
+    article_id = models.OneToOneField(Article, on_delete=models.CASCADE, related_name='amount') 
     value = models.PositiveIntegerField(default=0)
 
 
@@ -117,7 +118,7 @@ class Delivery_price(models.Model):
         GBP = 'GBP','Pound'
         AUD = 'AUD','Australian Dollar'
         CAD = 'CAD','Canadian Dollar'
-    article_id = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='delivery_price')
+    article_id = models.OneToOneField(Article, on_delete=models.CASCADE, related_name='delivery_price')
     value = models.DecimalField(max_digits=10, decimal_places=2,blank=True,null=True)
     currency = models.CharField(
         max_length=5, 
@@ -127,19 +128,19 @@ class Delivery_price(models.Model):
     )
 
 class Author(models.Model):
-    article_id = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='authors') 
+    article_id = models.OneToOneField(Article, on_delete=models.CASCADE, related_name='author') 
     value = models.CharField(max_length=100,blank=True) 
 
 class Artist(models.Model):
-    article_id = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='artists') 
+    article_id = models.OneToOneField(Article, on_delete=models.CASCADE, related_name='artist') 
     value = models.CharField(max_length=100,blank=True) 
 
 class Saga(models.Model):
-    article_id = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='sagas') 
+    article_id = models.OneToOneField(Article, on_delete=models.CASCADE, related_name='saga') 
     value = models.CharField(max_length=100,blank=True) 
 
 class Language(models.Model):
-    article_id = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='languages') 
+    article_id = models.OneToOneField(Article, on_delete=models.CASCADE, related_name='language') 
     value = models.CharField(max_length=100,blank=True) 
 
 
@@ -147,7 +148,7 @@ class Language(models.Model):
 #============CUSTOM====================
 # Custom fields are stored in json
 class Custom(models.Model):
-    article_id = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='customs') 
+    article_id = models.OneToOneField(Article, on_delete=models.CASCADE, related_name='custom') 
     value = models.JSONField(default=dict, blank=True) 
 
 

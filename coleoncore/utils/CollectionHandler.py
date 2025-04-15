@@ -1,12 +1,12 @@
 
-from models import (
+from coleoncore.models import (
     Coleoncore, Article, Name, Image, Status, Price, Description,
     Store, Purchase_date, Arrival_date, Set, Amount,
     Delivery_price, Author, Artist, Saga, Language, Custom
 )
 
 class CollectionHandler:
-    default_column_mapping = {
+    default_columns = {
         "name": Name,
         "image": Image,
         "status": Status,
@@ -29,26 +29,69 @@ class CollectionHandler:
     def __init__(self, coleoncore_instance):
         self.coleoncore = coleoncore_instance
         self.columns = self.coleoncore.columns.split(":")
+        self.articles=self.load_articles()
+        #print("==============================")
+        #print(self.columns)
 
-    # Creates an ampty article (maybe later i add some options to create whith data but for now i dnt need to)
+    def __str__(self):
+        return f"CollectionHandler for '{self.coleoncore.title}' (columns: {self.columns})"
+
+    def __repr__(self):
+        return f"<CollectionHandler id={self.coleoncore.id} title={self.coleoncore.title} columns={self.columns}>"
+
+
+
+
+
+
+
+
+    # Creates an empty article (maybe later i add some options to create whith data but for now i dnt need to)
     def create_article(self):
-        article = Article.objects.create(coleoncore=self.collection)
+        article = Article.objects.create(coleoncore=self.coleoncore)
         for column in self.columns:
-            model_class = self.default_column_mapping.get(column)
+            model_class = self.default_columns.get(column)
             if model_class:
                 model_class.objects.create(article_id=article)
         return article
 
+
+
     #Creates a collection 
-    #This is a class method and returns a CollectionHandler object
-    @classmethod
-    def create_collection(user, title, columns=None): 
+    #This is a static method and returns a CollectionHandler object
+    @staticmethod
+    def create_collection(user, title): 
         coleoncore = Coleoncore.objects.create(
             user=user,
             title=title,
-            columns=columns if columns else None  # If no columns are passed then the model use his defaults
         )
-        handler = CollectionHandler(coleoncore) #Calls to the constructor
-        handler.create_article()
+        handler = CollectionHandler(coleoncore) #Calls to the constructor that returns the instance of the object
         return handler
+    
 
+    #==============================
+    def load_articles(self):
+        articles = []
+        for article in self.coleoncore.articles.all().order_by("created_at"):
+            data = {"id": article.id}
+            for column in self.columns:
+                model_class = self.default_columns.get(column)
+                if model_class:
+                    related_field_name = model_class._meta.model_name + "s"  # Django plural related_name
+                    related_items = getattr(article, related_field_name).all()
+
+            print(article)
+
+        return articles
+
+
+
+"""             
+                
+                
+                    if related_items.exists():
+                        data[column] = related_items.first()  # assuming one-to-one semantics per column
+                    else:
+                        data[column] = None
+            articles.append(data) 
+"""
