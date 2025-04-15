@@ -29,15 +29,11 @@
                 </tr>
             </thead>
             <tbody>
-                {% for row in rows %}
+                {% for article in collection.articles %}
                     <tr>
-                        {% for value in row.values %}
+                        {% for col_name  in collection.columns %}
                             <td>
-                                {% if value.value %}
-                                    {{ value.value }}{% if value.currency %} ({{ value.currency }}){% endif %}
-                                {% else %}
-                                    {{ value }}
-                                {% endif %}
+                                {{ article[col_name].value }}
                             </td>
                         {% endfor %}
                     </tr>

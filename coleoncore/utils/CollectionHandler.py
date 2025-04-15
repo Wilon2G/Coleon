@@ -40,12 +40,6 @@ class CollectionHandler:
         return f"<CollectionHandler id={self.coleoncore.id} title={self.coleoncore.title} columns={self.columns}>"
 
 
-
-
-
-
-
-
     # Creates an empty article (maybe later i add some options to create whith data but for now i dnt need to)
     def create_article(self):
         article = Article.objects.create(coleoncore=self.coleoncore)
@@ -69,23 +63,23 @@ class CollectionHandler:
         return handler
     
 
-    #==============================
+#==============================
     def load_articles(self):
         articles = []
         for article in self.coleoncore.articles.all().order_by("created_at"):
-            data = {"id": article.id}
+            data = {}
             for column in self.columns:
-                model_class = self.default_columns.get(column) #This gets the name of the table to know ehre to look for the article
+                model_class = self.default_columns.get(column)#This gets the name of the table to know ehre to look for the article
                 if model_class:
-                    print("==============================")
-                    related_obj = getattr(article, column)
- 
-                    print(related_obj)
-
-
-
-            #print(article)
-
+                    related_obj = getattr(article, column, None)#This gets the OBJECT from a specific column related to a specific article
+                    if related_obj:
+                        field_data = {}
+                        for field in related_obj._meta.fields:
+                            field_name = field.name
+                            if field_name != 'id' and field_name != 'article_id':
+                                field_data[field_name] = getattr(related_obj, field_name)
+                        data[column] = field_data
+            articles.append(data)
         return articles
 
 
