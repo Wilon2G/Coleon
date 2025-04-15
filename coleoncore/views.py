@@ -43,6 +43,9 @@ def delete_collection(request, collection_id):
 def update_collection(request, collection_id):
     collection = get_object_or_404(Coleoncore, id=collection_id, user=request.user)
     handler=CollectionHandler(collection)
+    if request.method == "POST":
+        handler.create_article()
+
     #print(handler)
     return render(request, 'collection_update.html', {
         "collection": handler,

@@ -75,19 +75,25 @@ class CollectionHandler:
         for article in self.coleoncore.articles.all().order_by("created_at"):
             data = {"id": article.id}
             for column in self.columns:
-                model_class = self.default_columns.get(column)
+                model_class = self.default_columns.get(column) #This gets the name of the table to know ehre to look for the article
                 if model_class:
-                    related_field_name = model_class._meta.model_name + "s"  # Django plural related_name
-                    related_items = getattr(article, related_field_name).all()
+                    print("==============================")
+                    related_obj = getattr(article, column)
+ 
+                    print(related_obj)
 
-            print(article)
+
+
+            #print(article)
 
         return articles
 
 
 
 """             
-                
+                                    related_field_name = model_class._meta.model_name  
+                    related_items = getattr(article, related_field_name).all()
+
                 
                     if related_items.exists():
                         data[column] = related_items.first()  # assuming one-to-one semantics per column
