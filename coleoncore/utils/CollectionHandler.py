@@ -65,33 +65,32 @@ class CollectionHandler:
 
 #==============================
     def load_articles(self):
+        currency_symbols = {
+            'USD': '$',
+            'EURO': '€',
+            'YEN': '¥',
+            'GBP': '£',
+            'AUD': 'A$',
+            'CAD': 'C$'
+        }
+
         articles = []
         for article in self.coleoncore.articles.all().order_by("created_at"):
             data = {}
+
             for column in self.columns:
-                model_class = self.default_columns.get(column)#This gets the name of the table to know ehre to look for the article
+                model_class = self.default_columns.get(column) #This gets the name of the table to know ehre to look for the article
                 if model_class:
-                    related_obj = getattr(article, column, None)#This gets the OBJECT from a specific column related to a specific article
+                    related_obj = getattr(article, column) #This gets the OBJECT from a specific column related to a specific article
                     if related_obj:
-                        field_data = {}
-                        for field in related_obj._meta.fields:
-                            field_name = field.name
-                            if field_name != 'id' and field_name != 'article_id':
-                                field_data[field_name] = getattr(related_obj, field_name)
-                        data[column] = field_data
+                        if column in ("delivery_price", "price") and hasattr(related_obj, "currency"):
+                            symbol = currency_symbols.get(getattr(related_obj, "currency", ""), "")
+                            data[column] = f"{related_obj.value}{symbol}"
+                        else:
+                            data[column] = related_obj.value
+
             articles.append(data)
         return articles
 
 
 
-"""             
-                                    related_field_name = model_class._meta.model_name  
-                    related_items = getattr(article, related_field_name).all()
-
-                
-                    if related_items.exists():
-                        data[column] = related_items.first()  # assuming one-to-one semantics per column
-                    else:
-                        data[column] = None
-            articles.append(data) 
-"""

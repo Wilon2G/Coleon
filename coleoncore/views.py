@@ -46,8 +46,8 @@ def update_collection(request, collection_id):
     if request.method == "POST":
         handler.create_article()
 
-    #print(handler)
+    print("========================================")
+    print(handler.articles)
     return render(request, 'collection_update.html', {
         "collection": handler,
-
     })

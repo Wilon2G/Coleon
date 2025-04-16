@@ -31,9 +31,10 @@
             <tbody>
                 {% for article in collection.articles %}
                     <tr>
-                        {% for col_name  in collection.columns %}
+                        {% for col  in article %}
                             <td>
-                                {{ article[col_name].value }}
+                                {{ col }}
+                                kk
                             </td>
                         {% endfor %}
                     </tr>
