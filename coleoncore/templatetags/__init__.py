@@ -1,0 +1,1 @@
+#Filters are like functions for the templates, is a weird thing that python does idk

@@ -1,5 +1,7 @@
 {% extends "layout.html" %}
 {% load static %} 
+{% load article_column_filter %}
+
 
 
 {% block customStyle %}
@@ -31,10 +33,9 @@
             <tbody>
                 {% for article in collection.articles %}
                     <tr>
-                        {% for col  in article %}
+                        {% for column  in collection.columns %}
                             <td>
-                                {{ col }}
-                                kk
+                                {{ article|get_column:column }}
                             </td>
                         {% endfor %}
                     </tr>
