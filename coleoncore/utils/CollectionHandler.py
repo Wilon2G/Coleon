@@ -62,6 +62,17 @@ class CollectionHandler:
         handler = CollectionHandler(coleoncore) #Calls to the constructor that returns the instance of the object
         return handler
     
+    #This is a way to create an article in a collection without having to create a Handler beforehand, this is to save recourses
+    @classmethod
+    def new_article(cls,coleoncore_instance): 
+        columns = coleoncore_instance.columns.split(":")
+        article = Article.objects.create(coleoncore=coleoncore_instance)
+        for column in columns:
+            model_class = cls.default_columns.get(column)
+            if model_class:
+                model_class.objects.create(article_id=article)
+        return article
+    
 
 #==============================
     def load_articles(self):
@@ -79,7 +90,7 @@ class CollectionHandler:
             data = {}
 
             for column in self.columns:
-                model_class = self.default_columns.get(column) #This gets the name of the table to know ehre to look for the article
+                model_class = self.default_columns.get(column) #This gets the model of the table to know ehre to look for the article
                 if model_class:
                     related_obj = getattr(article, column) #This gets the OBJECT from a specific column related to a specific article
                     if related_obj:

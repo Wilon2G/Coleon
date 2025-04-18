@@ -2,7 +2,9 @@
 {% load static %} 
 {% load article_column_filter %}
 
-
+{% block customJs %}
+    <script src="{% static 'js/collection_update.js' %}" defer ></script>
+{% endblock customJs %}
 
 {% block customStyle %}
     <link rel="stylesheet" href="{% static 'css/collection_update.css' %}">
@@ -16,7 +18,7 @@
 <div class="container">
     <div class="d-flex justify-content-between align-items-center mb-3">
         <h1 class="mb-0">{{ collection.coleoncore.title }}</h1>
-        <form method="post">
+        <form id="add-article-form" method="post" action="" >
             {% csrf_token %}
             <button type="submit" class="btn btn-primary">+ Add Article</button>
         </form>

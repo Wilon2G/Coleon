@@ -5,6 +5,7 @@ from django.shortcuts import get_object_or_404
 from django.views.decorators.http import require_POST
 from django.apps import apps
 from coleoncore.utils.CollectionHandler import CollectionHandler  #CollectionHandler is the class that represents and manages the collections (a lot)
+from django.http import JsonResponse
 
 
 
@@ -42,12 +43,13 @@ def delete_collection(request, collection_id):
 @login_required(login_url="/users/login/")
 def update_collection(request, collection_id):
     collection = get_object_or_404(Coleoncore, id=collection_id, user=request.user)
-    handler=CollectionHandler(collection)
     if request.method == "POST":
-        handler.create_article()
+        CollectionHandler.new_article(collection)
+        return JsonResponse({"status": "success","kk":"s"}) 
 
-    print("========================================")
-    print(handler.articles)
+    handler=CollectionHandler(collection)
+
+    #print(handler.articles)
     return render(request, 'collection_update.html', {
         "collection": handler,
     })
