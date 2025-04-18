@@ -65,6 +65,7 @@ class CollectionHandler:
     #This is a way to create an article in a collection without having to create a Handler beforehand, this is to save recourses
     @classmethod
     def new_article(cls,coleoncore_instance): 
+        article_json={}
         columns = coleoncore_instance.columns.split(":")
         article = Article.objects.create(coleoncore=coleoncore_instance)
         for column in columns:
@@ -75,15 +76,12 @@ class CollectionHandler:
     
 
 #==============================
+
+
+
+
+
     def load_articles(self):
-        currency_symbols = {
-            'USD': '$',
-            'EURO': '€',
-            'YEN': '¥',
-            'GBP': '£',
-            'AUD': 'A$',
-            'CAD': 'C$'
-        }
 
         articles = []
         for article in self.coleoncore.articles.all().order_by("created_at"):
@@ -94,14 +92,25 @@ class CollectionHandler:
                 if model_class:
                     related_obj = getattr(article, column) #This gets the OBJECT from a specific column related to a specific article
                     if related_obj:
-                        if column in ("delivery_price", "price") and hasattr(related_obj, "currency"):
-                            symbol = currency_symbols.get(getattr(related_obj, "currency", ""), "")
-                            data[column] = f"{related_obj.value}{symbol}"
-                        else:
-                            data[column] = related_obj.value
-
+                        data[column]=self.format_article(related_obj,column)
             articles.append(data)
         return articles
 
 
 
+    def format_article(self,related_obj,column):
+        currency_symbols = {
+            'USD': '$',
+            'EURO': '€',
+            'YEN': '¥',
+            'GBP': '£',
+            'AUD': 'A$',
+            'CAD': 'C$'
+        }
+
+        if column in ("delivery_price", "price") and hasattr(related_obj, "currency"):
+            symbol = currency_symbols.get(getattr(related_obj, "currency", ""), "")
+            return {"value":related_obj.value,"currency":symbol}
+        else:
+            return related_obj.value
+        return ""
