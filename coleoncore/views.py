@@ -44,12 +44,14 @@ def delete_collection(request, collection_id):
 def update_collection(request, collection_id):
     collection = get_object_or_404(Coleoncore, id=collection_id, user=request.user)
     if request.method == "POST":
-        CollectionHandler.new_article(collection)
-        return JsonResponse({"status": "success"}) 
+        new_article=CollectionHandler.new_article(collection)
+        #print("================================")
+        #print(new_article)
+        return JsonResponse({"status": "success","new_article":new_article}) 
 
     handler=CollectionHandler(collection)
 
-    print(handler.articles)
+    #print(handler.articles)
     return render(request, 'collection_update.html', {
         "collection": handler,
     })

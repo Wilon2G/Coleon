@@ -67,12 +67,17 @@ class CollectionHandler:
     def new_article(cls,coleoncore_instance): 
         article_json={}
         columns = coleoncore_instance.columns.split(":")
+        #print("columns=================")
+        #print(columns)
         article = Article.objects.create(coleoncore=coleoncore_instance)
+        article_json["id"]=article.id
         for column in columns:
             model_class = cls.default_columns.get(column)
             if model_class:
-                model_class.objects.create(article_id=article)
-        return article
+                o=model_class.objects.create(article_id=article)
+                #print(o.value)
+                article_json[column]=cls.format_article(o,column)
+        return article_json
     
 
 #==============================
@@ -82,11 +87,10 @@ class CollectionHandler:
 
 
     def load_articles(self):
-
         articles = []
         for article in self.coleoncore.articles.all().order_by("created_at"):
             data = {}
-
+            data["id"]=article.id
             for column in self.columns:
                 model_class = self.default_columns.get(column) #This gets the model of the table to know ehre to look for the article
                 if model_class:
@@ -97,8 +101,8 @@ class CollectionHandler:
         return articles
 
 
-
-    def format_article(self,related_obj,column):
+    @staticmethod
+    def format_article(related_obj,column):
         currency_symbols = {
             'USD': '$',
             'EURO': '€',
@@ -113,4 +117,3 @@ class CollectionHandler:
             return {"value":related_obj.value,"currency":symbol}
         else:
             return related_obj.value
-        return ""
