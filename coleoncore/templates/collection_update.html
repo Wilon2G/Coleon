@@ -34,13 +34,7 @@
             </thead>
             <tbody>
                 {% for article in collection.articles %}
-                    <tr id="article_{{article|get_column:"id"}}" >
-                        {% for column  in collection.columns %}
-                            <td>
-                                {{ article|get_column:column }}
-                            </td>
-                        {% endfor %}
-                    </tr>
+                    {% include "_article_row.html" with article=article columns=collection.columns %}
                 {% endfor %}
             </tbody>
     </table>

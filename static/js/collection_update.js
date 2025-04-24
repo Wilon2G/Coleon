@@ -10,8 +10,6 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
     }
 
-    console.log("Form found, attaching event listener");
-
     form.addEventListener("submit", function (e) {
         e.preventDefault();
 
@@ -25,21 +23,14 @@ document.addEventListener("DOMContentLoaded", function () {
             },
             body: new FormData(form)
         })
-        .then(response => {
-            if (response.ok) {
-                console.log("Article added via AJAX");
-                //window.location.reload(); // Later we'll swap this for table re-render
-                if (response['new_article']){
-                    console.log("new article detected, pending to table . . .");
-                    //console.log(response.new_article);
-                    table.querySelector("tbody").insertAdjacentHTML("beforeend", "<tr><td>kk</td></tr>");
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === "success" && data.new_article) {
+                    table.querySelector("tbody").insertAdjacentHTML("beforeend", data.new_article);
                 }
-            } else {
-                alert("Something went wrong.");
-            }
-        })
-        .catch(error => {
-            console.error("Fetch error:", error);
-        });
-    });
+            })
+            .catch(error => {
+                console.error("Fetch error:", error);
+            });
+    })
 });

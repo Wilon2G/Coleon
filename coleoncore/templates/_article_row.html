@@ -1,0 +1,19 @@
+{% load article_column_filter %}
+
+<tr id="article_{{ article|get_column:"id" }}">
+    {% for column in columns %}
+        <td>
+            {% if column == "price" or column == "delivery_price" %}
+                {% if article|get_column:column.value %}
+                    {{ article|get_column:column.value }}{{ article|get_column:column.currency }}
+                {% endif %}
+            {% else %}
+                {% if article|get_column:column == None %}
+                    
+                {% else %}
+                {{ article|get_column:column }}
+                {% endif %}
+            {% endif %}
+        </td>
+    {% endfor %}
+</tr>

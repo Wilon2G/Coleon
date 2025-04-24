@@ -6,6 +6,8 @@ from django.views.decorators.http import require_POST
 from django.apps import apps
 from coleoncore.utils.CollectionHandler import CollectionHandler  #CollectionHandler is the class that represents and manages the collections (a lot)
 from django.http import JsonResponse
+from django.template.loader import render_to_string
+
 
 
 
@@ -45,9 +47,15 @@ def update_collection(request, collection_id):
     collection = get_object_or_404(Coleoncore, id=collection_id, user=request.user)
     if request.method == "POST":
         new_article=CollectionHandler.new_article(collection)
-        #print("================================")
+        print("================================")
         #print(new_article)
-        return JsonResponse({"status": "success","new_article":new_article}) 
+        #print(collection.columns.split(":"))
+        row_html = render_to_string("_article_row.html", {
+            "article": new_article,
+            "columns": collection.columns.split(":")
+        })
+        print(row_html)
+        return JsonResponse({"status": "success","new_article":row_html}) 
 
     handler=CollectionHandler(collection)
 
