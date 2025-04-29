@@ -4,9 +4,11 @@
 
 {% block customJs %}
     <script src="{% static 'js/collection_update.js' %}" defer ></script>
+    <script src="{% static 'DataTables/datatables.min.js' %}"></script>
 {% endblock customJs %}
 
 {% block customStyle %}
+    <link href="{% static 'DataTables/datatables.min.css' %}" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/collection_update.css' %}">
 {% endblock customStyle %}
 
